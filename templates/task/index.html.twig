@@ -19,6 +19,7 @@
                 <th>Done</th>
                 <th>Images</th>
                 <th>Priority</th>
+                <th>Category</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -33,6 +34,11 @@
                     <img src="{{ asset(task.image.imgPath) }}" width="200px" />
                     {% endif %}</td>
                 <td>{{ task.priority.name }}</td>
+
+                <td>{% for category in task.categories %}
+                        {{ category }}
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('task_show', {'id': task.id}) }}">show</a>
                     <a href="{{ path('task_edit', {'id': task.id}) }}">edit</a>

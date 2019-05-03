@@ -18,6 +18,10 @@
             <tr>
                 <th>Priority</th>
                 <td>{{ task.priority.name }}</td>
+                <td>{% if task.image %}
+
+                        <img src="{{ asset(task.image.imgPath) }}" width="200px" />
+                    {% endif %}</td>
             </tr>
             <tr>
                 <th>Done</th>

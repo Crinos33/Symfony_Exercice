@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Task;
 use App\Entity\Priority;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -25,6 +26,11 @@ class TaskType extends AbstractType
 
             ))
             ->add('image',ImageType::Class)
+
+            ->add('categories', null, [
+                'expanded'    => true,
+                'multiple' => true
+    ])
         ;
     }
 
