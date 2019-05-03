@@ -28,7 +28,10 @@
                 <td>{{ task.id }}</td>
                 <td>{{ task.name }}</td>
                 <td>{{ task.done ? 'Yes' : 'No' }}</td>
-                <td>{% if task.image %}{{ task.image.imgPath}}{% endif %}</td>
+                <td>{% if task.image %}
+
+                    <img src="{{ asset(task.image.imgPath) }}" width="200px" />
+                    {% endif %}</td>
                 <td>{{ task.priority.name }}</td>
                 <td>
                     <a href="{{ path('task_show', {'id': task.id}) }}">show</a>

@@ -100,7 +100,7 @@ class TaskController extends AbstractController
             $file =$form->get('image')->get('file')->getData();
 
             if($file) {
-                $fileName = $this->generateUniquefileName().'/'.$file->guessExtension();
+                $fileName = $this->generateUniquefileName().'.'.$file->guessExtension();
 
                 try {
                     $file->move(
@@ -136,32 +136,37 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="task_delete", methods={"DELETE"})
+     * @Route("/{id}", name="task_img_delete", methods={"POST"})
      */
     public function deleteImg(Request $request, Task $task): Response
     {
         if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->request->get('_token'))) {
             $image = $task->getImage();
-            $this->removeFile($image->getPath());
+            if($image){
+                $this->removeFile($image->getPath());
+            }
 
             $task->setImage(null);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($image);
+            $task->setImage(null);
             $entityManager->persist($task);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('task_index', array('id'=>$task->getId()));
+        return $this->redirectToRoute('task_edit', array('id'=>$task->getId()));
     }
 
     /**
-     * @Route("/{id}", name="products_delete", methods={"DELETE"})
+     * @Route("/{id}", name="task_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Task $task): Response
     {
         if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->request->get('_token'))) {
             $image = $task->getImage();
-            $this->removeFile($image->getPath());
+            if($image){
+                $this->removeFile($image->getPath());
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($task);
             $entityManager->flush();
