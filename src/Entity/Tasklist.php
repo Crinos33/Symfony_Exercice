@@ -24,7 +24,7 @@ class Tasklist
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Listitem", mappedBy="tasklist")
+     * @ORM\OneToMany(targetEntity="App\Entity\Listitem", cascade={"all"}, orphanRemoval=true, mappedBy="tasklist")
      */
     private $Listitems;
 
