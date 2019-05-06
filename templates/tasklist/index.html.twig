@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Image index{% endblock %}
+{% block title %}Tasklist index{% endblock %}
 
 {% block body %}
-    <h1>Image index</h1>
+    <h1>Tasklist index</h1>
     <a href="{{ path('task_index') }}">lien vers task</a>
     <br>
     <br>
@@ -22,40 +22,32 @@
     <a href="{{ path('listitem_index') }}">lien vers listitem</a>
     <br>
     <br>
+
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Path</th>
-                <th>Img_path</th>
-                <th>Image</th>
-                <th>Alt</th>
+                <th>Name</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for image in images %}
+        {% for tasklist in tasklists %}
             <tr>
-                <td>{{ image.id }}</td>
-                <td>{{ image.path }}</td>
-                <td>{{ image.imgpath }}</td>
-                <td><img src="{{ asset(image.imgpath) }}" width="200px "/></td>
-                <td>{{ image.alt }}</td>
-
-
+                <td>{{ tasklist.id }}</td>
+                <td>{{ tasklist.name }}</td>
                 <td>
-                    <a href="{{ path('image_show', {'id': image.id}) }}">show</a>
-                    <a href="{{ path('image_edit', {'id': image.id}) }}">edit</a>
+                    <a href="{{ path('tasklist_show', {'id': tasklist.id}) }}">show</a>
+                    <a href="{{ path('tasklist_edit', {'id': tasklist.id}) }}">edit</a>
                 </td>
-
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('image_new') }}">Create new</a>
+    <a href="{{ path('tasklist_new') }}">Create new</a>
 {% endblock %}

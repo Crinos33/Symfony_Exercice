@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Listitem{% endblock %}
+
+{% block body %}
+    <h1>Create new Listitem</h1>
+
+    {{ include('listitem/_form.html.twig') }}
+
+    <a href="{{ path('listitem_index') }}">back to list</a>
+{% endblock %}

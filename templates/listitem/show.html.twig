@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listitem{% endblock %}
+
+{% block body %}
+    <h1>Listitem</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ listitem.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ listitem.label }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('listitem_index') }}">back to list</a>
+
+    <a href="{{ path('listitem_edit', {'id': listitem.id}) }}">edit</a>
+
+    {{ include('listitem/_delete_form.html.twig') }}
+{% endblock %}

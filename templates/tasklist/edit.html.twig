@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tasklist{% endblock %}
+
+{% block body %}
+    <h1>Edit Tasklist</h1>
+
+    {{ include('tasklist/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('tasklist_index') }}">back to list</a>
+
+    {{ include('tasklist/_delete_form.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('asset/tasklist-form.js')}}"></script>
+{% endblock %}
