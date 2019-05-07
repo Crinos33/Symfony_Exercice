@@ -104,56 +104,31 @@ class Task
     }
 
     /**
-     * @return Collection|TaskCategory[]
-     */
-    public function getTaskCategories(): Collection
-    {
-        return $this->taskCategories;
-    }
-
-    public function addTaskCategory(TaskCategory $taskCategory): self
-    {
-        if (!$this->taskCategories->contains($taskCategory)) {
-            $this->taskCategories[] = $taskCategory;
-            $taskCategory->addName($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTaskCategory(TaskCategory $taskCategory): self
-    {
-        if ($this->taskCategories->contains($taskCategory)) {
-            $this->taskCategories->removeElement($taskCategory);
-            $taskCategory->removeName($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Category[]
+     * @return Collection|categories[]
      */
     public function getCategories(): Collection
     {
         return $this->categories;
     }
 
-    public function addCategory(Category $category): self
+    public function addCategory(Category $taskCategory): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
+        if (!$this->categories->contains($taskCategory)) {
+            $this->categories[] = $taskCategory;
+            $taskCategory->addTask($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(Category $category): self
+    public function removeCategory(Category $taskCategory): self
     {
-        if ($this->categories->contains($category)) {
-            $this->categories->removeElement($category);
+        if ($this->categories->contains($taskCategory)) {
+            $this->categories->removeElement($taskCategory);
+            $taskCategory->removeTask($this);
         }
 
         return $this;
     }
+
 }

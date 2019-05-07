@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
- * @Route("/task")
+ * @Route("/task", host="exotest.fr")
  */
 class TaskController extends AbstractController
 {
