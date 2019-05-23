@@ -14,7 +14,27 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        login:
+            host: api\.exotest\.fr
+            pattern: ^/login
+            stateless: true
+            anonymous: true
+            json_login:
+                check_path: /login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api:
+            host: api\.exotest\.fr
+            pattern: ^/
+            stateless: true
+            anonymous: false
+            provider: fos_userbundle
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
         main:
+            host: exotest\.fr
             pattern: ^/
             form_login:
                 provider: fos_userbundle
